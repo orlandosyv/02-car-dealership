@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { CarsService } from './cars.service';
 
 @Controller('cars')
@@ -14,9 +14,12 @@ export class CarsController {
     }
 
     @Get(':id')
-    getCardById(@Param('id') id: string) {
-        const index = parseInt(id, 10);  // Convert id to a number
-        console.log({ id, index  });
-        return this.carsService.findCarById(index);
+    getCardById(@Param('id', ParseIntPipe) id: number) {
+          // Convert id to a number
+        console.log({ id });
+        throw new Error("Wrong id format");
+
+        return this.carsService.findCarById(id);
     }
+
 }
