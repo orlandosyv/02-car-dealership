@@ -17,8 +17,8 @@ export class CarsController {
     getCardById(@Param('id', ParseIntPipe) id: number) {
           // Convert id to a number
         console.log({ id });
-        throw new Error("Wrong id format");
 
+        //throw new Error("Wrong id format");
         return this.carsService.findCarById(id);
     }
 
